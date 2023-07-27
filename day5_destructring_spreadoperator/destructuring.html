@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Destructuring & Spread Operator</h1>
+
+    <script>
+        let arrayData = ["Pune","Nagpur"];
+        // ex1
+        let aone ,atwo,athree;
+         
+                     [aone,atwo,athree]  = ["Pune","Nagpur","Mumbai"];
+                    //  console.log(aone);
+                    //  console.log(atwo);
+                    //  console.log(athree);
+
+                    // ex2
+        let bone,btwo,bremain ;
+     
+        [bone,btwo,...bremain]= ["Pune","Nagpur","Mumbai","Rjasthan","Satara"];
+        console.log(bone);
+        console.log(btwo);
+        console.log(bremain);
+
+
+        // ex3
+
+        let newArray = ["one","two","three"];
+        let newSecondArray = ["four","five","six"];
+        let finalArray = [...newArray,...newSecondArray];
+            console.log(finalArray);
+        
+            //ex4
+                // destructing Object
+            const obj = {
+                name:"code first",
+                address:"Pune",
+                mobileNumber:545454545
+            }
+
+            const {name,address,mobileNumber} =obj;
+                 console.log(name);
+                 console.log(address);
+                 console.log(mobileNumber);
+
+    </script>
+</body>
+</html>
