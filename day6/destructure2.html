@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj ={name:"code first",age:"25",address:"pune"};
+        obj.address = "Mumbai";
+        obj.mobile = "33434334";
+        // console.log(obj);
+
+        let obj2 = {name:"code first",age:"25",address:"pune"};
+
+        // declaration part
+        // let  {name,age,address} = obj2;
+        // console.log(name,age,address);
+
+        // updating objects
+        // let updatedObj = {...obj2,address:"Mumbai"};   
+        let updatedObj = {...obj2,name:"code academy"};     
+        
+        console.log(updatedObj);
+
+        let c = [23,45,565];
+          
+        c = [334,554,7878,...c];
+        console.log(c);
+
+        function add(a,b){
+            return  a + b;
+        }
+
+        let a = add(23,45);
+          console.log("a value>>>>>",a);
+    </script>
+</body>
+</html>
