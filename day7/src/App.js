@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
-
+       
   const [name,setName] = useState("code first");
   const [age,setAge] = useState(0);
   const [mobile,setMobile]= useState("");
