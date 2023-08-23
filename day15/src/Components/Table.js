@@ -9,6 +9,7 @@ const Table = (props) => {
     const deleteForm = (formObj,index)=>{
       props.getDeleteInfoFromTable(formObj,index);
     }
+    const name ="jhfjdfhjdfjd";
     return (
         <div>
              table data variable    ==formInfoArray
@@ -27,9 +28,9 @@ const Table = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-
+                                      
                                 {
-                                    props?.formInfoArray && props?.formInfoArray.map((formobj, index) => {
+                                    props?.formInfoArray && props?.formInfoArray.length > 0 && props?.formInfoArray.map((formobj, index) => {
                                         return (
                                             <tr>
                                                 <td>{formobj.name}</td>
@@ -49,6 +50,8 @@ const Table = (props) => {
 
                             </tbody>
                         </table>
+
+                       
         </div>
     );
 };
