@@ -1,45 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 const Navbar = () => {
 
-    const [navbarData,setNavbarData] = useState([]);
+  const [navbarData, setNavbarData] = useState([]);
 
-    useEffect(()=>{
-        const getApiCall = async()=>{
+  useEffect(() => {
+    const getApiCall = async () => {
+      try {
+        const response = await axios.get("https://onlinetestapi.gerasim.in/api/Ecomm/GetAllCategory");
+        console.log(response?.data?.data);
+        setNavbarData(response?.data?.data);
+        
+      } catch (error) {
+           console.log(error);
+      }
+     
+    }
+    getApiCall();
+  }, [])
+
+  return (
+    <div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <a className="navbar-brand" href="/">ECCCOM</a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            {navbarData?.length > 0 && navbarData.map((item)=>{
+              if(item.categoryName !== 'string'){
+                return (
+                  <li className="nav-item active">
+                  <Link className="nav-link active" aria-current="page" to={item.categoryName.toLowerCase()}>{item.categoryName}</Link>
+                  </li>
+                )
+              }
+            })}
+           
             
-            const response = await axios.get("https://onlinetestapi.gerasim.in/api/Ecomm/GetAllCategory");
-            console.log(response.data);
-            setNavbarData(response.data);
-        }
-         getApiCall();
-    },[])
-
-    return (
-        <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <a className="navbar-brand" href="#">Navbar</a>
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
-  </button>
-  <div className="collapse navbar-collapse" id="navbarNav">
-    <ul className="navbar-nav">
-      <li className="nav-item active">
-        <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">Features</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">Pricing</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+          </ul>
         </div>
-    );
+      </nav>
+    </div>
+  );
 };
 
 export default Navbar;

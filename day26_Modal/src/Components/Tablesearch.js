@@ -38,9 +38,10 @@ const Tablesearch = () => {
 
     const sortingFunction = (keyname) => {
         console.log(orderby[keyname]);
-        debugger;
 
         if (orderby[keyname] === "ASC") {
+            functionForAsc(keyname);
+            debugger
             const strAscending = [...searchDataJson].sort((a, b) =>
                 a[keyname].toLowerCase() > b[keyname].toLowerCase() ? 1 : -1,
             );
@@ -65,6 +66,64 @@ const Tablesearch = () => {
     const settingFlag = (flag) => {
         setFlag(!flag);
     }
+
+    const functionForAsc = (keyname) => {
+
+        //Ascending
+        // let originalArrays = ["Apple", "apple", "Acrobat", "Account", "account", "Banana", "banana", "carrot", "Carrot", 1, 2];
+        let originalArrays = searchDataJson;
+        function lexCompare(a, b) {
+            if (a[0].toUpperCase() !== b[0].toUpperCase() || a[0] === b[0])
+                return a.localeCompare(b);
+            return a[0] === a[0].toUpperCase()
+                ? -1
+                : 1
+        }
+        let sortedArrays = originalArrays.slice().sort((a, b) => {
+            if (typeof a[keyname] === typeof b[keyname]) {
+                return typeof a[keyname] === "number"
+                    ? a[keyname] - b[keyname]
+                    : lexCompare(a[keyname], b[keyname])
+            } else {
+                return typeof a[keyname] === "number"
+                    ? 1
+                    : -1
+            }
+        })
+
+        console.log(sortedArrays);
+    }
+  
+
+//Descending
+
+let originalArray = ["Apple","apple","Acrobat","Account","account","Banana","banana","carrot","Carrot",1,2];
+
+function lexCompare(a,b) {
+  if (b[0].toUpperCase() !== a[0].toUpperCase() || b[0] === a[0])
+    return b.localeCompare(a);
+  return a[0] === a[0].toUpperCase() 
+    ? -1
+    : 1
+}
+
+let sortedArray = originalArray.slice().sort((a,b) => {
+  if (typeof a === typeof b) {
+    //if a and b have the same type (ie both are number or string)
+    return typeof a === "number"
+      ? b - a  //both are numbers, sort them ascending
+      : lexCompare(a,b)  //use the sorting function for strings defined above
+  } else {
+    return typeof a === "number"
+      ? 1 // a is a number, b is a string so b has to be sorted before a
+      : -1 // b is a number, a is a string so a has to be sorted before b
+  }
+})
+
+console.log(sortedArray);
+
+
+
     return (
         <div>
             <Modal title="This is props title" body="This is props body" flag={flag} settingFlag={settingFlag} ></Modal>
