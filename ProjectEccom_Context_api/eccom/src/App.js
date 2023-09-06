@@ -8,8 +8,10 @@ import Mobile from './Component/Pages/Mobile';
 import Headphone from './Component/Pages/HeadPhones';
 import DetailsPage from './Component/Pages/Other/DetailsPage';
 function App() {
+
   return (
    <div className='constainer-fluid'>
+
   <BrowserRouter>
        <Navbar></Navbar>
      <Routes>
@@ -19,6 +21,7 @@ function App() {
         <Route path='/detailspage' element={<DetailsPage></DetailsPage>}> </Route>
      </Routes>
   </BrowserRouter>
+  
 
    </div>
   );

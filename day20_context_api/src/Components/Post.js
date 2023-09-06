@@ -37,7 +37,7 @@ const Post = () => {
     return (
         <div>
             <button onClick={()=>getDataFromServer()}>Get Articles</button>
-            <button onClick={()=>contextinfo.upDateName()}>Change Name</button>
+            <button onClick={()=>contextinfo.upDateName("dsdsdddsds")}>Change Name</button>
 
             <table class="table">
   <thead>

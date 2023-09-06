@@ -1,6 +1,9 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 const DetailsPage = () => {
+    let { state } = useLocation();
+    console.log(state.cardDetail);
     return (
         <div>
            <div>
@@ -11,7 +14,7 @@ const DetailsPage = () => {
             <div class="col-md-6 border-end">
                 <div class="d-flex flex-column justify-content-center">
                     <div class="main_image">
-                        <img src="https://api.mobilaty.com/storage/uploads/E8jtPC-1625492659.jpg" id="sd" alt='ddd' width="350" />
+                        <img src={state?.cardDetail?.productImageUrl} id="sd" alt='ddd' width="350" />
                     </div>
                   
                 </div>
@@ -19,13 +22,13 @@ const DetailsPage = () => {
             <div class="col-md-6">
                 <div class="p-3 right-side">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h3>IIlana</h3>
+                        <h3>{state?.cardDetail?.productName}</h3>
                         <span class="heart"><i class='bx bx-heart'></i></span>
                     </div>
                     <div class="mt-2 pr-3 content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                        <p>{state?.cardDetail?.productDescription}</p>
                     </div>
-                    <h3>$430.99</h3>
+                    <h3>${state?.cardDetail?.productPrice}</h3>
                     <div class="ratings d-flex flex-row align-items-center">
                         
                         <span>441 reviews</span>

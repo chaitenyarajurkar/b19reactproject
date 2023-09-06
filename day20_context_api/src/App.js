@@ -14,8 +14,8 @@ import Accodian from './Components/Accodian';
 const AppContext = createContext();
 function App() {
     const [name,setName] = useState("Helo context");
-    const upDateName =()=>{
-      setName("code First");
+    const upDateName =(param)=>{
+      setName("code First",param);
     }
     console.log("app.js")
   return(

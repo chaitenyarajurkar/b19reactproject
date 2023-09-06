@@ -41,7 +41,7 @@ const Mobile = () => {
 
                             <p><strong>RS:</strong> {item.productPrice}</p>
                             <FontAwesomeIcon icon={faCartShopping} className='pt-2'/>
-                            <Link to="/detailspage" >detail{">"}</Link>
+                            <Link to="/detailspage" state={{ cardDetail: item }} >detail{">"}</Link>
                             </div>
                         </div>
                     </div>
