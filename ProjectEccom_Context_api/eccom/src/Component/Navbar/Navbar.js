@@ -42,6 +42,11 @@ const Navbar = () => {
             
           </ul>
         </div>
+        <div class="form-inline">
+
+          <button class="btn btn-outline-success me-2" type="submit"><Link to="/login">Login</Link></button>{""}
+          <button class="btn btn-outline-success me-2 " type="submit"> <Link to="/signup">Sign up</Link></button>
+        </div>
       </nav>
     </div>
   );

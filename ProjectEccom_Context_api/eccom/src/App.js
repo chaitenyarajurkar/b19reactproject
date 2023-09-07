@@ -7,6 +7,7 @@ import Home from './Component/Pages/Home';
 import Mobile from './Component/Pages/Mobile';
 import Headphone from './Component/Pages/HeadPhones';
 import DetailsPage from './Component/Pages/Other/DetailsPage';
+import Login from './Component/Pages/Login/Login';
 function App() {
 
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/mobile' element={<Mobile></Mobile>}></Route>
         <Route path='/headphones' element={<Headphone></Headphone>}></Route>
         <Route path='/detailspage' element={<DetailsPage></DetailsPage>}> </Route>
+        <Route path='/login' element={<Login></Login>} ></Route>
      </Routes>
   </BrowserRouter>
   
