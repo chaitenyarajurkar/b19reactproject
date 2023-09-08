@@ -29,7 +29,7 @@ const DetailsPage = () => {
                         <p>{state?.cardDetail?.productDescription}</p>
                     </div>
                     <h3>${state?.cardDetail?.productPrice}</h3>
-                    <div class="ratings d-flex flex-row align-items-center">
+                    <div className="d-flex flex-row align-items-center">
                         
                         <span>441 reviews</span>
                     </div>

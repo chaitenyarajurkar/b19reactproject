@@ -1,17 +1,37 @@
 import React, { useState } from 'react';
 import './login.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const [formData,setFormData] = useState({UserName:"",UserPassword:""});
+    const [errorMessage,setErrormessage] = useState("");
+    const navigate = useNavigate();
     const onChangeHandler = (fieldName,value)=>{
         setFormData(prevState=>({...prevState,[fieldName]:value}));
     }
     const submitHandler=async(e)=>{
+
          e.preventDefault();
-       const res = await axios.post("https://onlinetestapi.gerasim.in/api/Ecomm/Login",formData);
-       console.log(res);
+         try {
+             const res = await axios.post("https://onlinetestapi.gerasim.in/api/Ecomm/Login",formData);
+             console.log(res.data);
+
+             if(res.data.data !== null){
+                 setErrormessage("");
+                 localStorage.setItem("userinfo",JSON.stringify(res.data.data))
+                alert(res.data.message);
+                navigate("/");
+             }else{
+                setErrormessage(res.data.message);
+             }
+
+            
+         } catch (error) {
+            
+         }
     }
     return (
+        <div className='bodycss'>
         <div className='wrapping'>
             <div className='decorate'>
             <h3 className='text-center p-3'>
@@ -26,6 +46,12 @@ const Login = () => {
                   <label className='form-label mb-2'>Password</label>
                   <input type='password' value={formData.UserPassword} onChange={(e)=>onChangeHandler("UserPassword",e.target.value)} className='form-control mb-2' placeholder='password'></input>
               </div>
+              
+              <div className='p-3' style={{color:"white"}}>
+                    {errorMessage}
+              </div>
+              
+              
               <div className='mt-3 mb-3 p-3'>
               <button type='submit' className='btn btn-primary'>Submit</button>
 
@@ -34,6 +60,7 @@ const Login = () => {
            
 
             </div>
+        </div>
         </div>
     );
 };
