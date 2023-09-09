@@ -3,7 +3,7 @@ import './login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 const Login = () => {
-    const [formData,setFormData] = useState({UserName:"",UserPassword:""});
+    const [formData,setFormData] = useState({UserName:"codefirst",UserPassword:""});
     const [errorMessage,setErrormessage] = useState("");
     const navigate = useNavigate();
     const onChangeHandler = (fieldName,value)=>{
