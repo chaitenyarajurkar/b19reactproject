@@ -21,6 +21,7 @@ const Login = () => {
                  localStorage.setItem("userinfo",JSON.stringify(res.data.data))
                 alert(res.data.message);
                 navigate("/");
+                window.location.reload()
              }else{
                 setErrormessage(res.data.message);
              }

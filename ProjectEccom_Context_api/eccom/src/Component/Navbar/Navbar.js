@@ -4,8 +4,14 @@ import {Link} from 'react-router-dom';
 const Navbar = () => {
 
   const [navbarData, setNavbarData] = useState([]);
+  const [flag,setFlag] = useState(false);
 
   useEffect(() => {
+    const userDetail = localStorage.getItem("userinfo");
+    console.log(userDetail);
+    if(userDetail !== null){
+      setFlag(true);
+    }
     const getApiCall = async () => {
       try {
         const response = await axios.get("https://onlinetestapi.gerasim.in/api/Ecomm/GetAllCategory");
@@ -19,7 +25,10 @@ const Navbar = () => {
     }
     getApiCall();
   }, [])
-
+  const onLogout =()=>{
+    localStorage.clear();
+    window.location.reload();
+  }
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -42,11 +51,17 @@ const Navbar = () => {
             
           </ul>
         </div>
-        <div class="form-inline">
+       <div class="form-inline">
 
-          <button class="btn btn-outline-success me-2" type="submit"><Link to="/login">Login</Link></button>{""}
-          <button class="btn btn-outline-success me-2 " type="submit"> <Link to="/signup">Sign up</Link></button>
+       {!flag && <><button class="btn btn-outline-success me-2" type="button"><Link to="/login">Login</Link></button>{""}
+          <button class="btn btn-outline-success me-2 " type="button"> <Link to="/signup">Sign up</Link></button>
+          </>
+          }
+          {flag && <><button class="btn btn-outline-success me-2" type="button" onClick={()=>onLogout()}>Logout</button>{""}</>}
         </div>
+
+        
+
       </nav>
     </div>
   );
