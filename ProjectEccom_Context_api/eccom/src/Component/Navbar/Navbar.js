@@ -5,7 +5,7 @@ const Navbar = () => {
 
   const [navbarData, setNavbarData] = useState([]);
   const [flag,setFlag] = useState(false);
-
+  console.log("navbar")
   useEffect(() => {
     const userDetail = localStorage.getItem("userinfo");
     console.log(userDetail);
@@ -25,6 +25,11 @@ const Navbar = () => {
     }
     getApiCall();
   }, [])
+
+  // useEffect(()=>{
+  //   console.log("hello guys")
+
+  // })
   const onLogout =()=>{
     localStorage.clear();
     window.location.reload();
