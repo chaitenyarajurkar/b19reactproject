@@ -5,17 +5,17 @@ const Navbar = () => {
 
   const [navbarData, setNavbarData] = useState([]);
   const [flag,setFlag] = useState(false);
-  console.log("navbar")
+  
   useEffect(() => {
     const userDetail = localStorage.getItem("userinfo");
-    console.log(userDetail);
+    
     if(userDetail !== null){
       setFlag(true);
     }
     const getApiCall = async () => {
       try {
         const response = await axios.get("https://onlinetestapi.gerasim.in/api/Ecomm/GetAllCategory");
-        console.log(response?.data?.data);
+        
         setNavbarData(response?.data?.data);
         
       } catch (error) {
@@ -26,10 +26,6 @@ const Navbar = () => {
     getApiCall();
   }, [])
 
-  // useEffect(()=>{
-  //   console.log("hello guys")
-
-  // })
   const onLogout =()=>{
     localStorage.clear();
     window.location.reload();
@@ -46,7 +42,7 @@ const Navbar = () => {
             {navbarData?.length > 0 && navbarData.map((item)=>{
               if(item.categoryName !== 'string'){
                 return (
-                  <li className="nav-item active">
+                  <li key={item.categoryName} className="nav-item active">
                   <Link className="nav-link active" aria-current="page" to={item.categoryName.toLowerCase()}>{item.categoryName}</Link>
                   </li>
                 )
@@ -56,13 +52,13 @@ const Navbar = () => {
             
           </ul>
         </div>
-       <div class="form-inline">
+       <div className="form-inline">
 
-       {!flag && <><button class="btn btn-outline-success me-2" type="button"><Link to="/login">Login</Link></button>{""}
-          <button class="btn btn-outline-success me-2 " type="button"> <Link to="/signup">Sign up</Link></button>
+       {!flag && <><button className="btn btn-outline-success me-2" type="button"><Link to="/login">Login</Link></button>{""}
+          <button className="btn btn-outline-success me-2 " type="button"> <Link to="/signup">Sign up</Link></button>
           </>
           }
-          {flag && <><button class="btn btn-outline-success me-2" type="button" onClick={()=>onLogout()}>Logout</button>{""}</>}
+          {flag && <><button className="btn btn-outline-success me-2" type="button" onClick={()=>onLogout()}>Logout</button>{""}</>}
         </div>
 
         

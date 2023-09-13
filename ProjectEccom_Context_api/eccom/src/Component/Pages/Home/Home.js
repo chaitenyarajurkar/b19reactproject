@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
+import Carousel from './Carousel';
+import axios from 'axios';
 
 class Home extends Component {
      constructor(){
-        console.log("home")
+        console.log("parent constructor")
         super();
         this.state={
             name:"code firt academy",
             flag:true,
-            obj:{address:"pnue"},
-            list:["onee","two","three"]
+            obj:{address:"pune"},
+            list:["onee","two","three"],
+            post:[]
+
         }
      }
 
@@ -20,6 +24,8 @@ class Home extends Component {
   
 
      static getDerivedStateFromProps(props, state){
+        console.log("parent getDerivedStateFromProps",props,state);
+
         if(props.name !== state.name){
             //Change in props
             return{
@@ -29,17 +35,31 @@ class Home extends Component {
         return null; // No change to state
      }
 
-     componentDidMount() {
-            console.log("didmount");
+    async componentDidMount() {
+        console.log("parent componentDidMount"); ///api call kr skte ho
+        const response  =await axios.get("https://jsonplaceholder.typicode.com/posts");
+        this.setState(prevState=>({
+            ...prevState,
+            post:response?.data?.data
+        }))
      }
+
+     componentWillUnmount(){
+        console.log("tata bye bye gaya")
+     }
+
+
     render() {
 
-        
+        const {obj,name,flag} = this.state;
+        console.log("parent render");
 
         return (
             <div>
+                {/* <Carousel></Carousel> */}
                 <button className='btn btn-primary' onClick={()=>this.toogle()}>Toggle H2</button>
-                {this.state.flag && <h2>{this.state.name}</h2>}
+                {flag && <h2>{name}</h2>}
+                {obj.address}
             </div>
         );
     }

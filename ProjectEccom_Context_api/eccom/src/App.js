@@ -17,7 +17,7 @@ function App() {
   <BrowserRouter>
        <Navbar></Navbar>
      <Routes>
-        <Route path='/' element={<Home name="code Academy"></Home>}></Route>
+        <Route path='/' element={<Home name="React code"></Home>}></Route>
         <Route path='/mobile' element={<Mobile></Mobile>}></Route>
         <Route path='/headphones' element={<Headphone></Headphone>}></Route>
         <Route path='/detailspage' element={<DetailsPage></DetailsPage>}> </Route>
