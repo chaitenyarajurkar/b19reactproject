@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Carousel extends Component {
 
-    constructor(){
+    constructor(props){
         console.log("child constructor")
         super();
         this.state={

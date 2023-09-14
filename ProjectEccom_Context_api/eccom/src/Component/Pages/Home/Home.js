@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import Carousel from './Carousel';
 import axios from 'axios';
+import Counter1 from './counter1';
+import Counter2 from './counter2';
 
 class Home extends Component {
      constructor(){
-        console.log("parent constructor")
+        // console.log("parent constructor")
         super();
         this.state={
             name:"code firt academy",
             flag:true,
             obj:{address:"pune"},
             list:["onee","two","three"],
-            post:[]
+            post:[],
+            count1:0,
+            count2:0
 
         }
      }
@@ -21,10 +25,10 @@ class Home extends Component {
         //  this.setState(prevState=>({...prevState,list:[...prevState.list,"four"]}));
      }
     
-  
+    
 
      static getDerivedStateFromProps(props, state){
-        console.log("parent getDerivedStateFromProps",props,state);
+        // console.log("parent getDerivedStateFromProps",props,state);
 
         if(props.name !== state.name){
             //Change in props
@@ -36,7 +40,7 @@ class Home extends Component {
      }
 
     async componentDidMount() {
-        console.log("parent componentDidMount"); ///api call kr skte ho
+        // console.log("parent componentDidMount"); ///api call kr skte ho
         const response  =await axios.get("https://jsonplaceholder.typicode.com/posts");
         this.setState(prevState=>({
             ...prevState,
@@ -45,14 +49,14 @@ class Home extends Component {
      }
 
      componentWillUnmount(){
-        console.log("tata bye bye gaya")
+        // console.log("tata bye bye gaya")
      }
 
 
     render() {
 
-        const {obj,name,flag} = this.state;
-        console.log("parent render");
+        const {obj,name,flag,count1,count2} = this.state;
+        // console.log("parent render");
 
         return (
             <div>
@@ -60,6 +64,12 @@ class Home extends Component {
                 <button className='btn btn-primary' onClick={()=>this.toogle()}>Toggle H2</button>
                 {flag && <h2>{name}</h2>}
                 {obj.address}
+                <button className='btn btn-primary' onClick={()=>this.setState(prevState=>({...prevState,count1:count1+1}))}>Count1</button>
+                {count1}
+                <button className='btn btn-primary' onClick={()=>this.setState(prevState=>({...prevState,count2:count2+1}))}>Count 2</button>
+                {count2}
+                <Counter1 count1={count1}></Counter1>
+                <Counter2 count2={count2}></Counter2>
             </div>
         );
     }
