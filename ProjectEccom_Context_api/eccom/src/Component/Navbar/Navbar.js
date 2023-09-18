@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+
 const Navbar = () => {
 
   const [navbarData, setNavbarData] = useState([]);
@@ -30,8 +31,10 @@ const Navbar = () => {
     localStorage.clear();
     window.location.reload();
   }
+
   return (
     <div>
+
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="/">ECCCOM</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,6 +67,8 @@ const Navbar = () => {
         
 
       </nav>
+
+  
     </div>
   );
 };

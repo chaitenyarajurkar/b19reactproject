@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import './login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../../UI/Modal/Modal';
+
+
 const Login = () => {
     const [formData,setFormData] = useState({UserName:"codefirst",UserPassword:""});
     const [errorMessage,setErrormessage] = useState("");
+    const [locaerrormsg,setLocaerrormsg] = useState("")
+    const [show,setShow] = useState(false)
     const navigate = useNavigate();
     const onChangeHandler = (fieldName,value)=>{
         setFormData(prevState=>({...prevState,[fieldName]:value}));
@@ -12,6 +17,11 @@ const Login = () => {
     const submitHandler=async(e)=>{
 
          e.preventDefault();
+         
+
+         if(formData.UserName !== "" && formData.UserPassword !==""){
+ 
+       
          try {
              const res = await axios.post("https://onlinetestapi.gerasim.in/api/Ecomm/Login",formData);
              console.log(res.data);
@@ -24,15 +34,30 @@ const Login = () => {
                 window.location.reload()
              }else{
                 setErrormessage(res.data.message);
+                setShow(true)
              }
 
             
          } catch (error) {
             
          }
+        }else{
+
+            if(formData.UserName === ""){
+                setLocaerrormsg("Please enter user name")
+            }
+            if(formData.UserPassword === ""){
+                setLocaerrormsg("Please enter paasword")
+            }
+        }
+
+    }
+    const hideModal = ()=>{
+        setShow(false);
     }
     return (
         <div className='bodycss'>
+            <Modal title="Login Error" content={errorMessage} show={show} hideModal={hideModal}></Modal>
         <div className='wrapping'>
             <div className='decorate'>
             <h3 className='text-center p-3'>
@@ -49,7 +74,7 @@ const Login = () => {
               </div>
               
               <div className='p-3' style={{color:"white"}}>
-                    {errorMessage}
+                    {locaerrormsg}
               </div>
               
               

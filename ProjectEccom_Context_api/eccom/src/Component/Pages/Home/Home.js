@@ -3,6 +3,7 @@ import Carousel from './Carousel';
 import axios from 'axios';
 import Counter1 from './counter1';
 import Counter2 from './counter2';
+import Modal from '../../UI/Modal/Modal';
 
 class Home extends Component {
      constructor(){
@@ -70,6 +71,7 @@ class Home extends Component {
                 {count2}
                 <Counter1 count1={count1}></Counter1>
                 <Counter2 count2={count2}></Counter2>
+                
             </div>
         );
     }
