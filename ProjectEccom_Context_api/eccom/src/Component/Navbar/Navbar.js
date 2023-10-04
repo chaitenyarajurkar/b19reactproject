@@ -1,17 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { AppContext } from '../../App';
 
 const Navbar = () => {
-
+  const contewxt= useContext(AppContext)
+  console.log(contewxt)
   const [navbarData, setNavbarData] = useState([]);
   const [flag,setFlag] = useState(false);
+  const [isadmin,setIsadmin] = useState(false);
   
   useEffect(() => {
     const userDetail = localStorage.getItem("userinfo");
-    
+    const admin = localStorage.getItem("isAdmin");
     if(userDetail !== null){
       setFlag(true);
+    }
+    if(admin !== null){
+      setIsadmin(true);
     }
     const getApiCall = async () => {
       try {
@@ -51,18 +59,26 @@ const Navbar = () => {
                 )
               }
             })}
-           
+            
+               {isadmin &&<li key="productadd" className="nav-item active">
+                  <Link className="nav-link active" aria-current="page" to='/addproduct'>Add Product</Link>
+                  </li>}
+
+                <li key="productadd" className="nav-item active">
+                  <Link className="nav-link active" aria-current="page" to='/addproduct'><FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon>{contewxt.count}</Link>
+                  </li>
             
           </ul>
         </div>
        <div className="form-inline">
 
-       {!flag && <><button className="btn btn-outline-success me-2" type="button"><Link to="/login">Login</Link></button>{""}
-          <button className="btn btn-outline-success me-2 " type="button"> <Link to="/signup">Sign up</Link></button>
+       {(!flag && !isadmin) && <><Link to="/login"><button className="btn btn-outline-success me-2" type="button">Login</button></Link>{""}
+       <Link to="/signup"><button className="btn btn-outline-success me-2 " type="button"> Sign up</button></Link>
           </>
           }
-          {flag && <><button className="btn btn-outline-success me-2" type="button" onClick={()=>onLogout()}>Logout</button>{""}</>}
+          {(flag || isadmin) &&   <><button className="btn btn-outline-success me-2" type="button" onClick={()=>onLogout()}>Logout</button>{""}</>}
         </div>
+
 
         
 

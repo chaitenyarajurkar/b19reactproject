@@ -1,110 +1,58 @@
 import React, { Component } from 'react';
-import Carousel from './Carousel';
-import axios from 'axios';
-import Counter1 from './counter1';
-import Counter2 from './counter2';
-import Modal from '../../UI/Modal/Modal';
 
 class Home extends Component {
-     constructor(){
-        // console.log("parent constructor")
+    constructor() {
         super();
-        this.state={
-            name:"code firt academy",
-            flag:true,
-            obj:{address:"pune"},
-            list:["onee","two","three"],
-            post:[],
-            count1:0,
-            count2:0
-
+        this.state = {
+           cauroselImagesUrls:[
+               "https://m.media-amazon.com/images/I/41IcuNkyrdL._SX300_SY300_QL70_FMwebp_.jpg",
+            "https://m.media-amazon.com/images/I/61-yhe06tyL._SX679_.jpg",
+            "https://m.media-amazon.com/images/I/31VM4MszXiL._SX300_SY300_QL70_FMwebp_.jpg",
+            "https://m.media-amazon.com/images/I/41ln2L6GfTL._SY300_SX300_QL70_FMwebp_.jpg",
+            "https://m.media-amazon.com/images/I/61J9i9saB+L._AC_UY327_FMwebp_QL65_.jpg" 
+           ],
+           activeno:0
         }
-     }
+    }
 
-    toogle=()=>{
-         this.setState(prevState=>({...prevState,flag:!prevState.flag}));
-        //  this.setState(prevState=>({...prevState,list:[...prevState.list,"four"]}));
-     }
-    
-    
-
-     static getDerivedStateFromProps(props, state){
-        // console.log("parent getDerivedStateFromProps",props,state);
-
-        if(props.name !== state.name){
-            //Change in props
-            return{
-                name: props.name
-            };
-        }
-        return null; // No change to state
-     }
-
-    async componentDidMount() {
-        // console.log("parent componentDidMount"); ///api call kr skte ho
-        const response  =await axios.get("https://jsonplaceholder.typicode.com/posts");
-        this.setState(prevState=>({
-            ...prevState,
-            post:response?.data?.data
-        }))
-     }
-
-     componentWillUnmount(){
-        // console.log("tata bye bye gaya")
-     }
-
+ setactiveItem = ()=>{
+    const limit = this.state.cauroselImagesUrls.length -1;
+     this.setState(prevState=>({
+          ...prevState,
+          activeno: prevState.activeno === limit ? 0 : prevState.activeno -1
+     }));
+}
 
     render() {
 
-        const {obj,name,flag,count1,count2} = this.state;
-        // console.log("parent render");
+          const {activeno,cauroselImagesUrls} = this.state;
 
         return (
-            <div>
-                {/* <Carousel></Carousel> */}
-                <button className='btn btn-primary' onClick={()=>this.toogle()}>Toggle H2</button>
-                {flag && <h2>{name}</h2>}
-                {obj.address}
-                <button className='btn btn-primary' onClick={()=>this.setState(prevState=>({...prevState,count1:count1+1}))}>Count1</button>
-                {count1}
-                <button className='btn btn-primary' onClick={()=>this.setState(prevState=>({...prevState,count2:count2+1}))}>Count 2</button>
-                {count2}
-                <Counter1 count1={count1}></Counter1>
-                <Counter2 count2={count2}></Counter2>
-                
+            <div className='container border mt-3 shadow p-3 mb-5 bg-white rounded'>
+                <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+                    <div className="carousel-inner text-center">
+                        {cauroselImagesUrls.map((imageurl,index)=>{
+                            return(
+
+                        <div key={index} className={activeno ===index ? "carousel-item active" :"carousel-item"}>
+                            <img className="d-block mx-auto" style={{height:"300px",objectFit:"contain"}}  src={imageurl} alt="First slide" />
+                        </div>
+                            )
+                        })}
+                        
+                    </div>
+                    <p className="carousel-control-prev" style={{color:'red'}} onClick={()=>this.setactiveItem()}>
+                        <span className="sr-only"  >Previous</span>
+                        <span className="carousel-control-prev-icon">Previous</span>
+                    </p>
+                    <p className="carousel-control-next"  style={{color:'red'}} onClick={()=>this.setactiveItem()}>
+                        <span className="carousel-control-next-icon">Next</span>
+                        <span className="sr-only "  >Next</span>
+                    </p>
+                </div>
             </div>
         );
     }
 }
 
 export default Home;
-
-
-// 1)mounting   > static getDerivedStatefromprops()  > componentDidmount()  > 
-// 2)updating
-// 3)unmounting
-
-
-// 1)
-// constructor 
-
-// render
-
-
-// 2)
-// construuctor
-
-// getDerivedStatefromprops
-
-// render
-
-
-// 3)
-// constructort
-
-// getDerivedStateFromProps
-
-// render 
-
-// componentDidMount
-
