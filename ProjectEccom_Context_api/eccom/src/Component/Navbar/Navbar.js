@@ -50,8 +50,8 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            {navbarData?.length > 0 && navbarData.map((item)=>{
-              if(item.categoryName !== 'string'){
+            {navbarData?.length > 0 && navbarData.map((item,index)=>{
+              if(item.categoryName !== 'string' && index <=6){
                 return (
                   <li key={item.categoryName} className="nav-item active">
                   <Link className="nav-link active" aria-current="page" to={item.categoryName.toLowerCase()}>{item.categoryName}</Link>
@@ -65,7 +65,7 @@ const Navbar = () => {
                   </li>}
 
                 <li key="productadd" className="nav-item active">
-                  <Link className="nav-link active" aria-current="page" to='/addproduct'><FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon>{contewxt.count}</Link>
+                  <Link className="nav-link active" aria-current="page" to='/addproduct'><FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon><sup>{contewxt.count}</sup></Link>
                   </li>
             
           </ul>

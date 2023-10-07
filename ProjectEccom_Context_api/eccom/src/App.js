@@ -12,6 +12,9 @@ import Signup from './Component/Pages/Signup/Signup';
 import Addproduct from './Component/Pages/Addproduct/Addproduct';
 import Nopage from './Component/Pages/Other/Nopage';
 import { createContext, useState } from 'react';
+import Camera from './Component/Pages/Camera';
+import Laptop from './Component/Pages/Laptop';
+import Tablet from './Component/Pages/Tablet';
 
 const AppContext = createContext();
 function App() {
@@ -29,6 +32,9 @@ const getUpdateCartount =(count)=>{
      <Routes>
         <Route path='/' element={<Home name="React code"></Home>}></Route>
         <Route path='/mobile' element={<Mobile></Mobile>}></Route>
+        <Route path='/camera' element={<Camera></Camera>}></Route>
+        <Route path='/laptop' element={<Laptop></Laptop>}></Route>
+        <Route path='/tablet' element={<Tablet></Tablet>}></Route>
         <Route path='/headphones' element={<Headphone></Headphone>}></Route>
         <Route path='/detailspage/:userId?/:id' element={<DetailsPage></DetailsPage>}> </Route>
         <Route path='/login' element={<Login></Login>} ></Route>

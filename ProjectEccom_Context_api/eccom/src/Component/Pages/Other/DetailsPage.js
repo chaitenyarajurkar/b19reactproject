@@ -8,7 +8,7 @@ const DetailsPage = () => {
     const constext = useContext(AppContext);
     let { state } = useLocation();
     let params = useParams();
-    const [count,setCount] = useState(0);
+    const [count,setCount] = useState(1);
     console.log(state.cardDetail,params);
 
     const AddotCartFunction=()=>{
@@ -56,7 +56,7 @@ const DetailsPage = () => {
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                         <button type="button"onClick={()=>setCount(count+1)} class="btn btn-secondary"><FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon></button>
                                         <button type="button" class="btn btn-light">{count}</button>
-                                        <button type="button" onClick={()=>setCount(count-1)} class="btn btn-secondary"><FontAwesomeIcon icon={faMinus} ></FontAwesomeIcon></button>
+                                        <button type="button" onClick={()=>setCount(prev=> count === 1 ? 1 : count-1)} class="btn btn-secondary"><FontAwesomeIcon icon={faMinus} ></FontAwesomeIcon></button>
                                     </div>
                                     <button class="btn btn-outline-dark">Buy Now</button>
                                         <button class="btn btn-dark" onClick={()=>AddotCartFunction()}>Add to Cart</button>
