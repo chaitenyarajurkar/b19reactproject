@@ -1,7 +1,7 @@
 import { GET_CAMERA_DATA, GET_MOBILE_DATA } from "./constants"
 
 
-const setMobileData =(apires)=>(dispatch)=>{
+const setMobileDataredux =(apires)=>(dispatch)=>{
 
     dispatch({
         type:GET_MOBILE_DATA,
@@ -10,7 +10,7 @@ const setMobileData =(apires)=>(dispatch)=>{
 
 }
 
-const setCameraData =(apires)=>(dispatch)=>{
+const setCameraDataredux =(apires)=>(dispatch)=>{
 
     dispatch({
         type:GET_CAMERA_DATA,
@@ -18,4 +18,4 @@ const setCameraData =(apires)=>(dispatch)=>{
     })
 }
 
-export {setMobileData,setCameraData};
+export {setMobileDataredux,setCameraDataredux};

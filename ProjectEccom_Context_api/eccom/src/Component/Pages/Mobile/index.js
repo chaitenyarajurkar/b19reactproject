@@ -3,8 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMobileDataredux } from '../../../Redux/react-redux/action';
 const Mobile = () => {
     const [mobileData,setMobileData] = useState([]);
+    const globalmobileData = useSelector(state=>state.reducer.globalmobileData);
+    const dispatch = useDispatch()
 
     useEffect(()=>{
       
@@ -13,12 +17,17 @@ const Mobile = () => {
                 const res = await axios.get('https://onlinetestapi.gerasim.in/api/Ecomm/GetAllProductsByCategoryId',{params:{id:1}})   
                 console.log(res);
                 setMobileData(res.data.data);
+                dispatch(setMobileDataredux(res.data.data));
         
             } catch (error) {
              
             }
         } 
-        getMobileData();
+        if(globalmobileData.length > 0){
+            setMobileData(globalmobileData);
+        }else{
+            getMobileData();
+        }
 
     },[])
     return (

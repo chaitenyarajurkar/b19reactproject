@@ -3,9 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {setCameraDataredux} from '../../../Redux/react-redux/action';
+//useSelector  => this use to access data from react-redux store
+//useDispatch  =>this hook is used for calling redux action functions
 const Camera = () => {
     const [cameraData,setCameraData] = useState([]);
-
+    
+    const globalCameraData = useSelector(state=>state.reducer.globalCameraData);
+    
+    const dispatch = useDispatch();
     useEffect(()=>{
       
         const getcameraData = async() =>{
@@ -13,14 +20,23 @@ const Camera = () => {
                 const res = await axios.get('https://onlinetestapi.gerasim.in/api/Ecomm/GetAllProductsByCategoryId',{params:{id:2}})   
                 console.log(res);
                 setCameraData(res.data.data);
+                dispatch(setCameraDataredux(res.data.data)); //globall storing the data
+              
         
             } catch (error) {
              
             }
         } 
-        getcameraData();
+        if(globalCameraData.length > 0){
+            setCameraData(globalCameraData);
+        }else{
+            getcameraData();
+
+        }
 
     },[])
+    debugger
+    console.log(cameraData);
     return (
         <div>
             <h1 className='text-center'>: Camera :</h1>
