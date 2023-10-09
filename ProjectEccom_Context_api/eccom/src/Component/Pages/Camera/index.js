@@ -5,6 +5,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {setCameraDataredux} from '../../../Redux/react-redux/action';
+import { baseurl } from '../../../assets/common';
 //useSelector  => this use to access data from react-redux store
 //useDispatch  =>this hook is used for calling redux action functions
 const Camera = () => {
@@ -17,7 +18,8 @@ const Camera = () => {
       
         const getcameraData = async() =>{
             try {
-                const res = await axios.get('https://onlinetestapi.gerasim.in/api/Ecomm/GetAllProductsByCategoryId',{params:{id:2}})   
+                const url = baseurl+'/GetAllProductsByCategoryId';
+                const res = await axios.get(url,{params:{id:2}})   
                 console.log(res);
                 setCameraData(res.data.data);
                 dispatch(setCameraDataredux(res.data.data)); //globall storing the data

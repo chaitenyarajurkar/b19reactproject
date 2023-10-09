@@ -25,6 +25,7 @@ const getUpdateCartount =(count)=>{
 } 
   return (
    <div className='constainer-fluid'>
+    <h6 className='text-center'>{process.env.REACT_APP_TITLE}</h6>
 
 <AppContext.Provider value={{count:cartcount,getUpdateCartount:getUpdateCartount}}>
   <BrowserRouter>
