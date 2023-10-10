@@ -15,6 +15,8 @@ import { createContext, useState } from 'react';
 import Camera from './Component/Pages/Camera';
 import Laptop from './Component/Pages/Laptop';
 import Tablet from './Component/Pages/Tablet';
+import Uncontrolled from './Component/Pages/Miscellanous/Uncontrolled';
+import Normalcomponent from './Component/Pages/Miscellanous/Normalcomponent';
 
 const AppContext = createContext();
 function App() {
@@ -41,6 +43,8 @@ const getUpdateCartount =(count)=>{
         <Route path='/login' element={<Login></Login>} ></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
         <Route path='/addproduct' element={<Addproduct></Addproduct>}></Route>
+        <Route path='/uncontrolled' element={<Uncontrolled></Uncontrolled>}></Route>
+        <Route path='/normalcomponent' element={<Normalcomponent></Normalcomponent>}></Route>
         <Route path='*' element={<Nopage></Nopage>}></Route>
      </Routes>
   </BrowserRouter>
