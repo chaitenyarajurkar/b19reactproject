@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMobileDataredux } from '../../../Redux/react-redux/action';
 import SecureRouteHoc from '../Other/SecoreRouteHoc';
-import axios from '../../Axios/axiosInterceptor'
+import axios from '../../Axios/axiosInterceptor';
+
 const Mobile = () => {
     const [mobileData,setMobileData] = useState([]);
     const globalmobileData = useSelector(state=>state.reducer.globalmobileData);

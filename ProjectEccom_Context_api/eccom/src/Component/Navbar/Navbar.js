@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../Axios/axiosInterceptor';
 import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
@@ -40,6 +41,20 @@ const Navbar = () => {
     window.location.reload();
   }
 
+  const loginJwt=async()=>{
+    const reqBody ={
+      "email": "nilson@email.com",
+      "password":"nilson"
+    }
+    try {
+         const result = await axios.post("http://localhost:8000/auth/login",reqBody);
+         console.log(result);
+         localStorage.setItem("access_token",result.data.access_token);
+    } catch (error) {
+      
+    }
+  }
+
   return (
     <div>
 
@@ -66,6 +81,10 @@ const Navbar = () => {
 
                 <li key="productadd" className="nav-item active">
                   <Link className="nav-link active" aria-current="page" to='/addproduct'><FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon><sup>{contewxt.count}</sup></Link>
+                  </li>
+
+                  <li key="productadd" className="nav-item active">
+                    <button className='nav-link active btn btn-danger' onClick={()=>loginJwt()}>Loginviajwt</button>
                   </li>
             
           </ul>

@@ -23,6 +23,8 @@ function App() {
 const [cartcount,setCartcount] = useState(0);
 
 const getUpdateCartount =(count)=>{
+
+  //
   setCartcount(count);
 } 
   return (

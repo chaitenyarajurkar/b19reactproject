@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+// import Button from 'react-bootstrap/Button';
+import Button from '@mui/material/Button';
 class Home extends Component {
     constructor() {
         super();
@@ -28,6 +29,11 @@ class Home extends Component {
           const {activeno,cauroselImagesUrls} = this.state;
 
         return (
+            <>
+            {/* <Button variant="primary" onClick={()=>alert("hello")}>Primary</Button> */}
+            <Button variant="text">Text</Button>
+      <Button variant="contained">Contained</Button>
+      <Button variant="outlined">Outlined</Button>
             <div className='container border mt-3 shadow p-3 mb-5 bg-white rounded'>
                 <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                     <div className="carousel-inner text-center">
@@ -51,6 +57,7 @@ class Home extends Component {
                     </p>
                 </div>
             </div>
+            </>
         );
     }
 }
